@@ -5,6 +5,9 @@
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/Task2-IoT/.vs/apz-pzpi-21-7-michkivskyi-yaroslav-task3/FileContentIndex/merges" />
+      <excludeFolder url="file://$MODULE_DIR$/Task2-IoT/bin/Release" />
+      <excludeFolder url="file://$MODULE_DIR$/Task2-IoT/obj/Debug/TempPE" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
