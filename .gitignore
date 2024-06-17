@@ -1,8 +1,7 @@
-/Task1-Server/node_modules/
-/Task1-Server/backups/
-/Task2-IoT/packages/
-/Task2-IoT/bin/
-/Task2-IoT/obj/
-/Task2-IoT/.vs/
-/Task3-WebClient/node_modules/
+/apzkr-pzpi-21-7-michkivskyi-yaroslav/Task1-Server/node_modules/
+/apzkr-pzpi-21-7-michkivskyi-yaroslav/Task2-IoT/packages/
+/apzkr-pzpi-21-7-michkivskyi-yaroslav/Task2-IoT/bin/
+/apzkr-pzpi-21-7-michkivskyi-yaroslav/Task2-IoT/obj/
+/apzkr-pzpi-21-7-michkivskyi-yaroslav/Task2-IoT/.vs/
+/apzkr-pzpi-21-7-michkivskyi-yaroslav/Task3-WebClient/node_modules/
 /.idea
