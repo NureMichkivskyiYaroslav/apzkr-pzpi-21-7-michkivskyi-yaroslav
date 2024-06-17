@@ -71,7 +71,8 @@ class ClientController {
                 status: trip.status,
                 start: trip.start,
                 finishPlan: trip.finishPlan,
-                finishFact: trip.finishFact || 'Not finished yet'
+                finishFact: trip.finishFact || 'Not finished yet',
+                _id:trip._id
             }));
 
             const response = {

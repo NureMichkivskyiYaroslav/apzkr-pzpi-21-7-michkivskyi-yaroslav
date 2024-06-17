@@ -1,88 +1,80 @@
 import axios from "axios";
-import { useState } from "react";
+import React, {useState} from "react";
 import styles from "./Login.module.css"
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+import {toast, ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function Registration() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [secondName, setSecondName] = useState('');
+    const [login, setLogin] = useState('');
+    const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
 
-  const nav = useNavigate();
+    const nav = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('firstName: ', firstName);
-    axios.post('http://localhost:8080/v1/register',
-      {
-        'firstName': firstName,
-        'secondName': secondName,
-        'email': email,
-        'password': password
-      }).then(() => {
-      }).catch((err) => {
-        console.log(err)
-      })
-  };
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        axios.post('http://localhost:4000/admin/register',
+            {
+                'name': name,
+                'login': login,
+                'password': password
+            }).then((resp) => {
+            nav('/login')
+            console.log(resp.data)
+        }).catch((err) => {
+            toast.error(String(err.response.data.error))
+        })
+    };
 
-  return (
-    <div className={styles.background}>
-      <div className={styles.content}>
-        <form onSubmit={handleSubmit}>
-          <div className={styles.loginDiv}>
-            <label htmlFor="registrationEmail">Электронна пошта:</label>
-            <input
-              type="email"
-              id="registrationEmail"
-              name="registrationEmail"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div className={styles.loginDiv}>
-            <label htmlFor="registrationPassword">Пароль:</label>
-            <input
-              type="password"
-              id="registrationPassword"
-              name="registrationPassword"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <div className={styles.loginDiv}>
-            <label htmlFor="registrationUsername">Ім'я користувача:</label>
-            <input
-              type="text"
-              id="registrationUsername"
-              name="registrationUsername"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              required
-            />
-          </div>
-          <div className={styles.loginDiv}>
-            <label htmlFor="registrationSecondName">Прізвище користувача:</label>
-            <input
-              type="text"
-              id="registrationSecondName"
-              name="registrationSecondName"
-              value={secondName}
-              onChange={(e) => setSecondName(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <button type="submit">Зареєструватися</button>
-          </div>
+    return (
+        <div className={styles.modal}>
+            <ToastContainer theme={"colored"}/>
+            <div className={styles.content}>
+                <form onSubmit={handleSubmit} lang='en'>
+                    <div className={styles.loginDiv}>
+                        <label htmlFor="registrationLogin">Login:</label>
+                        <input
+                            type="text "
+                            id="registrationLogin"
+                            name="registrationLogin"
+                            value={login}
+                            onChange={(e) => setLogin(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className={styles.loginDiv}>
+                        <label htmlFor="registrationPassword">Password:</label>
+                        <input
+                            type="password"
+                            id="registrationPassword"
+                            name="registrationPassword"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className={styles.loginDiv}>
+                        <label htmlFor="registrationUsername">Name:</label>
+                        <input
+                            type="text"
+                            id="registrationUsername"
+                            name="registrationUsername"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <button type="submit">Sign up</button>
+                    </div>
 
-          <p>Вже маєте акаунт?<br /> <a href="#!" onClick={() => { nav("/login") }}>Увійти</a></p>
-
-        </form>
-      </div>
-    </div>
-  );
+                    <p>Already have an account?<br/> <a href="#!" onClick={() => {
+                        nav("/login")
+                    }}>Log in</a></p>
+                </form>
+            </div>
+        </div>
+    );
 }
 

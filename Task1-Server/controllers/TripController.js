@@ -3,6 +3,7 @@ const Case = require('../models/Case');
 const Driver = require('../models/Driver');
 const Fridge = require('../models/Fridge');
 const TripCase = require('../models/TripCase');
+const Client = require('../models/Client')
 const temperatureExceededService = require('../services/temperatureExceededService');
 
 class TripController {
@@ -31,6 +32,7 @@ class TripController {
 
             const driver = await Driver.findById(trip.driverId);
             const fridge = await Fridge.findById(trip.fridgeId);
+            const client = await Client.findById(trip.clientId);
             const tripCases = await TripCase.find({ tripId });
 
             const tripCasesInfo = await Promise.all(tripCases.map(async (tripCase) => {
@@ -44,11 +46,13 @@ class TripController {
                     maxTemperature: tripCase.maxTemperature,
                     tripCaseId:tripCase._id,
                     caseId:tripCase.caseId,
+                    tripId:tripCase.tripId,
+                    status:trip.status,
                     statistics
                 };
             }));
 
-            res.status(200).json({ trip, driver, fridge, tripCasesInfo });
+            res.status(200).json({ trip, driver, fridge, client, tripCasesInfo });
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Internal Server Error' });
@@ -111,7 +115,10 @@ class TripController {
             // Отримуємо незайняті холодильники
             const availableFridges = await Fridge.find({ _id: { $nin: occupiedFridges } });
 
-            res.status(200).json({ cases: availableCases, drivers: availableDrivers, fridges: availableFridges });
+            // Отримуємо усіх клієнтів
+            const clients = await Client.find({});
+
+            res.status(200).json({ cases: availableCases, drivers: availableDrivers, fridges: availableFridges, clients });
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Internal Server Error' });

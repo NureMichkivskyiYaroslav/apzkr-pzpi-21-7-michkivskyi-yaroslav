@@ -1,0 +1,80 @@
+.content{
+    width: 70%;
+    min-height:150px;
+    border: gray 1px solid;
+    background: #ededed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 50px;
+}
+
+.clientInfo{
+    display: flex;
+    flex-direction: row;
+    margin-top: 40px;
+}
+
+.infoBlock{
+    width: 300px;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: end;
+    margin-right: 20px;
+}
+.infoBlockValues{
+    width: 300px;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: start;
+}
+
+.buttons{
+    width: 200px;
+    /*background: #747bff;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.edit{
+    width: 85px;
+    background: orange;
+    border: gray 1px solid;
+}
+
+.edit:hover{
+    background: #ffb427;
+}
+
+.delete{
+    width: 85px;
+    background: red;
+    border: gray 1px solid;
+}
+
+.delete:hover{
+    background: #fd5151;
+}
+
+.finish{
+    width: 120px;
+    margin-top: 40px;
+    background: #646cff;
+    border: gray 1px solid;
+}
+
+.finish:hover{
+    background: #8086ff;
+}
+
+.label{
+    margin-top: 50px;
+    font-size: 30px;
+}
+
+.tripBlock{
+    margin: 40px 0 40px 0;
+}

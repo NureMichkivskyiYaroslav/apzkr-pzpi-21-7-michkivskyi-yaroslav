@@ -1,5 +1,7 @@
 const Case = require('../models/Case');
 const TripCase = require('../models/TripCase');
+const Trip = require('../models/Trip')
+const temperatureExceededService = require("../services/temperatureExceededService");
 
 class CaseController {
     async addCase(req, res) {
@@ -58,7 +60,24 @@ class CaseController {
 
             const tripCases = await TripCase.find({ caseId: id });
 
-            res.status(200).json({ foundCase, tripCases });
+            const tripCasesInfo = await Promise.all(tripCases?.map(async (tripCase) => {
+                const tripInfo = await Trip.findById(tripCase.tripId);
+                const statistics = await temperatureExceededService.calculateStatistics(tripCase._id)
+
+                return {
+                    inventoryNumber: foundCase.inventoryNumber,
+                    price: tripCase.price,
+                    filling: tripCase.filling,
+                    maxTemperature: tripCase.maxTemperature,
+                    tripCaseId:tripCase._id,
+                    caseId:tripCase.caseId,
+                    tripId:tripCase.tripId,
+                    status:tripInfo.status,
+                    statistics
+                };
+            }));
+
+            res.status(200).json({ case:foundCase, tripCasesInfo });
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Internal Server Error' });

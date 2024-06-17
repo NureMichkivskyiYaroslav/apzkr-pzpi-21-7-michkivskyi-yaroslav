@@ -1,0 +1,82 @@
+.actions{
+    width: 70%;
+    min-height:150px;
+    border: gray 1px solid;
+    background: #ededed;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.action{
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    height: 100px;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.action:hover{
+    filter: drop-shadow(0px 0px 10px rgba(0, 0, 20, 0.8));
+}
+
+label{
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.entities{
+    margin-top: 30px;
+    width: 70%;
+    min-height:150px;
+    border: gray 1px solid;
+    background: #ededed;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-around;
+}
+
+.entityBlock{
+    min-height: 30px;
+    width: 250px;
+    margin: 40px 0 40px 0;
+}
+
+.entity{
+    width: 246px;
+    text-align: center;
+    height: 40px;
+    border: gray 2px solid;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: 700;
+    background: white;
+    margin-bottom: 5px;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+.entity:hover{
+    background: lightgrey;
+}
+
+.dataBlock{
+    margin: 40px 0 40px 0;
+    min-height: 30px;
+    width: 900px;
+}
+
+.add{
+    background: #00af00;
+    border: gray 1px solid;
+    width: 160px;
+    margin-bottom: 20px;
+}
+
+.add:hover{
+    background: #00cf00;
+}
